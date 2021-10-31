@@ -9,7 +9,7 @@ let pokemonList = [
 let text = " ";
 for (let i = 0; i < pokemonList.length; i++){
   text = pokemonList[i];
-  document.write(pokemonList[i].name + " Type: " + pokemonList[i].type + " Ability: " + pokemonList[i].ability + "<br>");
+  document.write(pokemonList[i].name + " (Height: " + pokemonList[i].height + ")" + "<br>");
 }
 
 // END OF FOR LOOP
