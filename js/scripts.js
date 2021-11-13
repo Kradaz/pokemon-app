@@ -1,10 +1,6 @@
 let pokemonRepository = (function() {
-let pokemonList = [
-  {name: "Mewtwo", height: 7, type: "psychic", ability: "Pressure"},
-  {name: "Zapdos", height: 1.6, type: ["psychic", "flying"], ability: "Lightningrod"},
-  {name: "Palkia", height: 4.2, type: ["dragon", "water"], ability: "Telepathy"},
-  {name: "Gengar", height: 1.5, type: ["ghost", "poison"], ability: "Levitate"}
-];
+let pokemonList = [];
+let apiUrl = 'https://pokeapi.co/api/v2/pokemon/?limit=150';
 //Return every item from the list
 function getAll() {
   return pokemonList;
@@ -32,7 +28,39 @@ function addEventItem(button, pokemon){
 }
 
 function showDetails(pokemon){
+  loadDetails(pokemon).then(function(){
   console.log(pokemon);
+});
+}
+// Promise added to fetch the data from the API using json
+function loadList() {
+  return fetch(apiUrl).then(function (response) {
+    return response.json();
+  }).then(function (json) {
+    json.results.forEach(function (item) {
+      let pokemon = {
+        name: item.name,
+        detailsUrl: item.url
+      };
+      add(pokemon);
+    });
+  }).catch(function (e) {
+    console.error(e);
+  })
+}
+// FUNCTION TO LOAD POKEMON'S DETAILS
+function loadDetails(item) {
+  let url = item.detailsUrl;
+  return fetch(url).then(function (response) {
+    return response.json();
+  }).then(function (details) {
+    // Now we add the details to the item
+    item.imageUrl = details.sprites.front_default;
+    item.height = details.height;
+    item.types = details.types;
+  }).catch(function (e) {
+    console.error(e);
+  });
 }
 //Return values outside
 return {
@@ -40,11 +68,15 @@ return {
   add: add,
   addListItem: addListItem,
   showDetails: showDetails,
-  addEventItem: addEventItem
+  addEventItem: addEventItem,
+  loadList: loadList,
+  loadDetails: loadDetails
 };
 })();
 
 //DISPLAY POKEMON LIST BY CALLING FUNCTION ADDLISTITEM FROM THE REPOSITORY
+pokemonRepository.loadList().then(function(){
 pokemonRepository.getAll().forEach(function (pokemon) {
   pokemonRepository.addListItem(pokemon);
+});
 });
