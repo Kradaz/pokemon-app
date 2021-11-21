@@ -1,5 +1,16 @@
+body {
+  background-color: #91a99c;
+}
+#titlePage {
+  text-align: center;
+}
+#side-picture {
+  width:22px;
+  margin-left: -3px;
+}
+
 .button-class {
-  background-color: #4caf50; /* Green */
+  background-color: black; /* Green */
   border: none;
   color: white;
   padding: 16px 32px;
@@ -11,9 +22,16 @@
   -webkit-transition-duration: 0.4s; /* Safari */
   transition-duration: 0.4s;
   cursor: pointer;
-  background-color: black;
-  color: red;
-  border: 2px solid #4caf50;
+  background-color: #d9603b;
+  color: black;
+  border: 2px solid black;
+}
+
+.pokemon-list li {
+  list-style-type: none;
+  text-align: center;
+  padding: 1px;
+  margin-right: 50px;
 }
 
 #modal-container {
@@ -63,6 +81,7 @@
 
 .modal p {
   margin-bottom: 0;
+
 }
 
 #modal-container {
