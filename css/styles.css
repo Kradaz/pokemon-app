@@ -3,10 +3,11 @@ body {
 }
 #titlePage {
   text-align: center;
+  padding-bottom: 20px;
 }
 #side-picture {
   width:22px;
-  margin-left: -3px;
+  margin-left: -10px;
 }
 
 .btn-img {
