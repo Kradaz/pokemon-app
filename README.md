@@ -4,3 +4,9 @@
 - Load pokemon list from an external API
 - Click on each pokemon to check their details
 - 150 pokemon listed
+## Languages
+- Javascript
+- Boostrap
+- CSS
+- HTML
+- API
